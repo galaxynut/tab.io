@@ -4,12 +4,9 @@
 ## h2
 ------
 
-> 区块引用
-> 再引用一次
-
 + 序列1
 + 序列2
-+ 序列3 (*、+、-效果一致)
++ 序列3
 
 1. 带序列号的
 2. 带序列号的2
@@ -18,5 +15,12 @@
 源码引用
 <code>hello world</code>
 
-超链接
+行内超链接
 [百度地图](www.map.baidu.com)
+
+参考<br>
+搜索引擎[Google][Google] [百度][Baidu]
+
+[Google]: wwww.google.com.hk
+[Baidu]: www.baidu.com
+
