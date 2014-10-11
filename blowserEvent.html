@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <div id="result" style="width:200px;height:200px;background-color:red"></div>
+</body>
+<script type="text/javascript">
+/**
+  浏览器内核以及差异性：
+
+  Trident  -----  IE
+  Gechos   ------ Mozilla FireFox
+  Webkit   ------ Safari Chrome
+  Presto   ------ Opera
+
+事件监听：
+一,  obj['e' + type + fn] = fn的作用 因为在IE中, 事件侦听器即事件处理函数内部的this默认指向window对象. W3C中指向所绑定的对象本身. 因此为了使事件处理函数内部的this指向所绑定的对象,可以将函数赋值为该对象的某个属性成为他的方法,那么this指针就指向了所绑定的对象本身. 
+二, 为什么不直接 obj.attachEvent('on' + type, obj['e' + type + fn]); 因为IE默认的事件对象为window.event, 而W3C则是作为参数传入如function(W3CEvent) { //其中W3CEvent为事件对象 }. 为了使得事件处理函数统一为function(theSameEvent) {} 同一传入事件对象. 那么IE则要把window.event传入 即可以用函数包装. 也就有了function(){  obj['e' + type + fn](window.event); } 
+三, 为什么不直接 obj.attachEvent('on' + type, function(){ obj['e' + type + fn](window.event); }); 因为方便移除事件的考虑, obj[type + fn]可以获得对事件处理函数的引用. 
+*/
+
+function addEvent(obj, type, fn) {
+    if (obj.attachEvent) {
+        obj['e' + type + fn] = fn;
+        obj[type + fn] = function() {
+            obj['e' + type + fn](window.event);
+        }
+        obj.attachEvent('on' + type, obj[type + fn]);
+    } else {
+        obj.addEventListener(type, fn, false);
+    }
+}
+
+function removeEvent(obj, type, fn) {
+    if (obj.detachEvent) {
+        obj.detachEvent('on' + type, obj[type + fn]);
+        obj[type + fn] = null;
+    } else {
+    	obj.removeEventListener(type, fn, false);
+    }
+}
+
+var dom = document.getElementById("result");
+addEvent(dom, "load", function() {
+    console.log("event 1");
+});
+addEvent(dom, "load", function() {
+    console.log("event 2");
+});
+</script>
+
+</html>
