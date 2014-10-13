@@ -1,0 +1,37 @@
+<html>
+<meta charset="utf-8">
+
+<head>
+    <title>jquery核心技术</title>
+</head>
+<script type="text/javascript">
+// jQuery的去new操作
+var $ = jQuery = function() {
+	return new jQuery.fn.init();  // 作用域分离（init和jQuery的this）
+};
+jQuery.fn = jQuery.prototype = {
+	init: function() {
+		this.length = 0;
+		this.test = function(){
+			return this.length;
+		}
+		return this;
+	},
+    version: "0.1",
+    length: 1,
+    size: function() {
+        return this.length;
+    }
+}
+
+jQuery.fn.init.prototype = jQuery.fn; //作用域分离之后，init的this已经无法访问到jQuery的相关内容，做一个原型上的覆盖。
+console.log($().version);
+console.log($().test());
+console.log($().size());
+</script>
+
+<body>
+
+</body>
+
+</html>
