@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<header>
+		<meta charset="utf-8">
+		<title>
+			时间流
+		</title>
+		<script type="text/javascript" src="event.js"></script>
+	</header>
+	<body>
+		<div id="box">
+			<input type="button" value="按钮" id="btn"></input>
+			<a href="nhn.html" id="xx">跳转</a>
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				function showMsg(event){
+					event = eventUtil.getEvent(event);
+					eventUtil.stopPropagation(event);
+					console.log("Show Message!");
+				}
+				function showBoxMsg(event){
+					event = eventUtil.getEvent(event);
+					eventUtil.stopPropagation(event);
+					console.log("box clicked!");
+				}
+				function showHrefClick(event){
+					event = eventUtil.getEvent(event);
+					eventUtil.stopPropagation(event);
+					eventUtil.preventDefault(event);
+					console.log("xx clicked");
+				}
+				var btn = document.getElementById("btn");
+				var box = document.getElementById("box");
+				var xx = document.getElementById("xx");
+
+				eventUtil.addEvent(btn, "click", showMsg);
+				eventUtil.addEvent(box, "click", showBoxMsg);
+				eventUtil.addEvent(xx, "click", showHrefClick);
+			}
+			
+		</script>
+	</body>
+</html>
