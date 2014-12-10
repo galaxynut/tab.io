@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>drag test</title>
+	<style type="text/css">
+		#box{position: absolute; top: 20px; left: 50px; background-color: #eee; width: 200px; height: 100px}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		window.onload = drag;
+		function drag(){
+			var box = document.getElementById("box");
+			box.onmousedown = function(event){
+				event = event || window.event;
+				var oX = event.clientX - box.offsetLeft,
+					oY = event.clientY - box.offsetTop;
+				document.onmousemove = function(e){
+					onMove(e, oX, oY);
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+				}
+			}
+		}
+		function onMove(e, x, y){
+			e = e || window.event;
+			var l = e.clientX - x,
+				t = e.clientY - y,
+				box = document.getElementById("box"),
+			    maxW = window.innerWidth
+					|| document.documentElement.clientWidth
+					|| document.body.clientWidth,
+
+				maxH = window.innerHeight
+					|| document.documentElement.clientHeight
+					|| document.body.clientHeight,
+				maxW = maxW - box.offsetWidth,
+				maxH = maxH - box.offsetHeight;			
+			if(l < 0){
+				l = 0;
+			}
+			if(l > maxW){
+				l = maxW;
+			}
+			if(t < 0){
+				t = 0;
+			}
+			if(t > maxH){
+				t = maxH;
+			}
+			box.style.left = l + "px";
+			box.style.top = t + "px";
+		}
+
+	</script>
+</body>
+</html>
