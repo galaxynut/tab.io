@@ -15,14 +15,14 @@
 				"contentType": "application/json; charset=UTF-8",
 				"timeout": 15000,
 				"data":{"a":10},
-				dataType: "jsonp",
-        		jsonpCallback: "_testcb",
-                success: function(data){
-                    console.log(data);
-                },
-                error: function(jqXHR, textStatus, errorThrown){
-                    alert('error ' + textStatus + " " + errorThrown);  
-                }
+				"dataType": "jsonp",
+		        	"jsonpCallback": "_testcb",
+		                "success": function(data){
+		                    console.log(data);
+		                },
+		                "error": function(jqXHR, textStatus, errorThrown){
+		                    alert('error ' + textStatus + " " + errorThrown);  
+		                }
 			});
 		}
 	</script>
