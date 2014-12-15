@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>jQuery ajax</title>
+	<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		window.onload = test;
+		function test(){
+			$.ajax({
+				"type": "POST",
+				"url": 'http://localhost:8888/test',
+				"contentType": "application/json; charset=UTF-8",
+				"timeout": 15000,
+				"data":{"data":{"name":"xxt", "ids":["005","006"]}},
+				//"dataType": "jsonp",
+        		//"jsonpCallback": "_testcb",
+                success: function(data){
+                    console.log(data);
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert('error ' + textStatus + " " + errorThrown);  
+                }
+			});
+		}
+	</script>
+</body>
+</html>
