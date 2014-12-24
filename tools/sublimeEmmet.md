@@ -8,3 +8,67 @@
 
 1. `Tab`或者`Ctrl+e`执行
 2. 相关语法可以参见[http://www.cnblogs.com/WhiteCusp/p/3360468.html](http://www.cnblogs.com/WhiteCusp/p/3360468.html "emmet语法")
+
+<!-- 
+    
+	    ！html标签
+	    > 子嵌入 
+	    + 兄弟节点
+	    ^ 跳入父层
+	    # 添加id
+	    . 添加class
+	    * 个数
+	    $ 序列号 
+		[] 自定义属性 key=value键值对 空格隔开
+		{} val值
+    -->
+    <!-- h$[title=item$]{Header $}*3 -->
+    <h1 title="item1">Header1</h1>
+    <h2 title="item2">Header2</h2>
+    <h3 title="item3">Header3</h3>
+    <!-- ul>li#item$$$*5 -->
+    <ul>
+    	<li id="item001"></li>
+    	<li id="item002"></li>
+    	<li id="item003"></li>
+    	<li id="item004"></li>
+    	<li id="item005"></li>
+    </ul>
+    <!-- p>{click}+a{here}+{to continue} -->
+ 	<p>click<a href="">here</a>to continue</p>
+
+ 	<!-- table>thead+(tr#tr$$$>td#td$$$*5)*3 -->
+ 	<table>
+ 		<thead></thead>
+ 		<tr id="tr001">
+ 			<td id="td001"></td>
+ 			<td id="td002"></td>
+ 			<td id="td003"></td>
+ 			<td id="td004"></td>
+ 			<td id="td005"></td>
+ 		</tr>
+ 		<tr id="tr002">
+ 			<td id="td001"></td>
+ 			<td id="td002"></td>
+ 			<td id="td003"></td>
+ 			<td id="td004"></td>
+ 			<td id="td005"></td>
+ 		</tr>
+ 		<tr id="tr003">
+ 			<td id="td001"></td>
+ 			<td id="td002"></td>
+ 			<td id="td003"></td>
+ 			<td id="td004"></td>
+ 			<td id="td005"></td>
+ 		</tr>
+ 	</table>
+ 	
+ 	<!-- table>.row>.col -->
+ 	<table>
+ 		<tr class="row">
+ 			<td class="col"></td>
+ 		</tr>
+ 	</table>
+ 	<!-- a:link -->
+ 	<a href="http://www.baidu.com"></a> 
+
