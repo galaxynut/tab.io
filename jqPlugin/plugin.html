@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jquery plugin</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery.popwin.js"></script>
+</head>
+
+<body>
+    <input id="myinput" type="text" value="While you click the input, a new window will popup."></input>
+    <script type="text/javascript">
+    var obj01 = {
+        name: "英文名：Sam Xiao",
+        age: 29,
+        girlfriend: {
+            name: "Yang",
+            age: 29
+        }
+    }
+    var obj02 = {
+        name: "中文名：XiaoJian",
+        girlfriend: {
+            name: "YY"
+        }
+    };
+
+    var b = $.extend(true, {}, obj01, obj02); //深拷贝，不改变obj01
+    var c = $.extend(false, {}, obj01, obj02); //浅拷贝，不改变obj01
+    var d = $.extend({}, obj01, obj02); //等价于上面一个，默认是浅拷贝
+    var a = $.extend(obj01, obj02); //浅拷贝，改变obj01
+    console.log("a is " + JSON.stringify(a));
+    console.log("obj01 is " + JSON.stringify(obj01));
+    (function($) {
+        $.fn.extend({
+            alertWhileClick: function() {
+                return $(this).each(function() {
+                    $(this).click(function() {
+                        $.popWin.show("Popup a new Window!");
+                    });
+                });
+            }
+        });
+    })(jQuery); // $.extend作用在$上，而$.fn.extend通过prototype派生，作用在jQuery对象上
+    $("#myinput").alertWhileClick();
+    </script>
+</body>
+
+</html>
