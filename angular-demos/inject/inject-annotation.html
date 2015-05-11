@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body ng-app="dependency" >
+<button ng-click="click()" ng-controller="refer">refer annotation</button>
+<button ng-click="click()" ng-controller="inject">inject annotation</button>
+<button ng-click="click()" ng-controller="inline">inline annotation</button>
+</body>
+<script type="text/javascript" src="../lib/angular.js"></script>
+<script type="text/javascript">
+    var dependency = angular.module("dependency",["ng"]);
+    dependency.factory("cat", ["$window", function($window) {
+        return {
+            "say": function() {
+                $window.alert("miao, miao");
+            }
+        }
+    }]);
+    dependency.controller("inline", ["$scope", "cat", function($scope, cat) {
+        $scope.click = cat.say;
+    }]);
+
+    function injectAnnotation($scope, $window) {
+        $scope.click = function() {
+            $window.alert("inject annotation");
+        }
+    }
+    injectAnnotation.$inject = ["$scope","$window"];
+    dependency.controller("inject", injectAnnotation);
+
+
+    dependency.controller("refer", function($scope, $window) {
+        $scope.click = function() {
+            $window.alert("inline annotation");
+        }
+    })
+
+    var injector = angular.injector([dependency.name])
+    console.log(injector.get("cat"));
+</script>
+</html>
