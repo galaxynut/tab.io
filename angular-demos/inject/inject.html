@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body ng-app="dependency" ng-controller="test">
+<button ng-click="click()">cat say</button>
+</body>
+<script type="text/javascript" src="../lib/angular.js"></script>
+<script type="text/javascript">
+    var dependency = angular.module("dependency",["ng"]);
+    dependency.controller("test", ["$scope", "$window", function($scope, $window) {
+        $scope.click = function() {
+            $window.alert("miao miao");
+        }
+    }]);
+</script>
+</html>
