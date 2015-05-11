@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title></title>
+</head>
+<body ng-controller="testctr">
+<button ng-click="click()">{{name}}</button>
+</body>
+<script type="text/javascript" src="../lib/angular.js"></script>
+<script type="text/javascript">
+//    var app = angular.module("app", ["ng"]);
+//    app.run(function($rootScope) {
+//        $rootScope.click = function() {
+//            alert(123);
+//        }
+//        $rootScope.name = "test";
+//    });
+    function testctr($scope) {
+        $scope.click = function() {
+            alert(123)
+        }
+        $scope.name = "test"
+    }
+</script>
+</html>
