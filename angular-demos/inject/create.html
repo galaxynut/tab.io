@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body ng-app="dependency" ng-controller="test">
+   <button ng-click="click()">cat say</button>
+</body>
+<script type="text/javascript" src="../lib/angular.js"></script>
+<script type="text/javascript">
+    var dependency = angular.module("dependency",[]);
+    dependency.factory("cat", ["$window", function($window) {
+        return {
+            "say": function() {
+                $window.alert("miao, miao");
+            }
+        }
+    }]);
+    dependency.controller("test", ["$scope", "cat", function($scope, cat) {
+        $scope.click = cat.say;
+    }])
+</script>
+</html>
