@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<button ng-click="click()">{{name}}</button>
+</body>
+<script type="text/javascript" src="../lib/angular.js"></script>
+<script type="text/javascript">
+    var app = angular.module("app", ["ng"]);
+    app.run(function ($rootScope) {
+        $rootScope.click = function () {
+            alert(123);
+        }
+        $rootScope.name = "test";
+    });
+
+    var htmle = document.getElementsByTagName("html")[0];
+
+    angular.bootstrap($(htmle), [app.name]);
+</script>
+</html>
+
