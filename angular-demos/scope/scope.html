@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<button ng-click="click()">{{name}}</button>
+{{clickCount}}
+<div id="child-scope">
+</div>
+</body>
+<script type="text/javascript" src="../lib/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/angular.js"></script>
+<script type="text/javascript">
+    var app = angular.module("app", ["ng"]);
+    app.run(function ($rootScope, $compile) {
+        $rootScope.click = function () {
+            $rootScope.clickCount += 1;
+            alert($rootScope.clickCount)
+        }
+        $rootScope.name = "parent scope";
+
+        $rootScope.clickCount =0;
+
+        $rootScope.$watch("clickCount", function() {
+            console.log("hi  clickCount changed")
+        })
+        var htmlsect = $("<span>{{name}}</span>");
+        var link = $compile(htmlsect);
+
+        var childScope = $rootScope.$new(false);
+        childScope.name = "child scope";
+        var dom = link(childScope);
+       $("#child-scope").append(dom);
+    });
+    angular.bootstrap($("html"), [app.name]);
+</script>
+</html>
+
+
+
