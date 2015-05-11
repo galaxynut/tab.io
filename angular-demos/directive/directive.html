@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>angularjs Directive</title>
+</head>
+
+<body>
+    <here></here>
+    <hello a="test" b="hello"></hello>
+    <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/angular.js"></script>
+    <script type="text/javascript">
+    var app = angular.module("myapp", ["ng"]);
+    app.directive("here", function() {
+        return {
+            template: "<div>Here is the here tags</div>",
+            restrict: "E",
+            replace: true
+        }
+    });
+    app.directive("hello", function() {
+        return {
+            link: function(scope, element, attr) {
+                element.append("try directives");
+            },
+            restrict: "E" // E、A、C、M，Default A
+        }
+    });
+    //var ele = document.getElementsByTagName("html")[0];
+    angular.bootstrap($("html"), [app.name]);
+    /*angular.module("test", []).directive("hello", function () {
+        return {
+            link: function (scope, element, attr) {
+                var a = attr["a"];
+                var b = attr["b"];
+                element.append(a + b);
+            },
+            restrict: "E"
+        }
+    })*/
+    </script>
+</body>
+
+</html>
