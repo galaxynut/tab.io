@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<button ng-click="click()">{{name}}</button>
+
+{{clickCount}}
+
+</body>
+<script type="text/javascript" src="../lib/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/angular.js"></script>
+<script type="text/javascript">
+    var app = angular.module("app", ["ng"]);
+    app.run(function ($rootScope) {
+        $rootScope.click = function () {
+            $rootScope.clickCount += 1;
+            alert($rootScope.clickCount)
+        }
+        $rootScope.name = "change value";
+
+        $rootScope.clickCount =0;
+
+        $rootScope.$watch("clickCount", function() {
+            console.log("hi  clickCount changed")
+        })
+    });
+
+    angular.bootstrap($("html"), [app.name]);
+</script>
+</html>
