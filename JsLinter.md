@@ -67,3 +67,16 @@ ESLint，个人最推荐的，易集成，对应插件多，报错能对应上�
 从整体来说，检测工具个人觉得对于基本的bug可以检测是最好的，所以个人偏向于ESLint，并且对于ES6完美支持，  
 对于IDE来说，我选择的是WEB Storm，默认支持ESLint。
 Linter tools 只是针对最基本的代码的检测，对于js编码有一定的提高，也不要过于依赖。
+
+**附上** webstorm中开启eslint的配置
+- 1. nodejs安装
+- 2. npm安装
+- 3. `npm install eslint -g` 全局安装eslint,本地运行时如果报对应安装包不存在，请继续npm安装对应包
+- 4. `npm install eslint-config-airbnb -g` 安装airbnb默认规则
+- 5. 默认配置.eslintrc
+    ```
+  {
+        "extends": "eslint-config-airbnb"
+  }
+    ```
+- 6. 对应配置webstorm中的nodejs路径、eslint以及.eslintrc路径即可
