@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='tabelDiv'></div>
+</body>
+<script type="text/javascript">
+var data = [
+    ['qq.com', 'sohu.com', 'baidu.com', 4, 55, 6, 4],
+    ['qq.com', 'xunlei.com', 'yahoo.com', 4, 6, 5, 4],
+    ['qq.com', 'sohu.com', 'baidu.com', 1, 6, 7, 4],
+    ['163.com', 'google.com', 'baidu.com', 8, 5, 7, 5],
+    ['360.com', 'google.com', 'sina.com', 1, 9, 9, 5]
+];
+
+function createTable(data) {
+    if(!data || data.length < 1){
+        return;
+    }
+    var rows = data.length,
+        lines = data[0].length,
+        tableDivDom = document.getElementById('tabelDiv'),
+        tableDom = document.createElement('table');
+    
+    tableDom.setAttribute('border', 1);
+    for (var i = 0; i < rows; i++) {
+        var row = tableDom.insertRow(i);
+        for (var j = 0; j < lines; j++) {
+            var cells = row.insertCell(j);
+            cells.innerHTML = data[i][j];
+            // 合并相同的列
+            if(i && data[i][j] === data[i-1][j]){
+                tableDom.rows[i].cells[j].style.display = "none";
+                var k = i;
+                while(k && tableDom.rows[k].cells[j].style.display === "none"){
+                    k--;
+                }
+                // 设置rowSpan
+                tableDom.rows[k].cells[j].rowSpan += 1;
+            }
+        }
+    }
+
+    tableDivDom.appendChild(tableDom);
+}
+window.onload = function(){
+    createTable(data);
+}
+</script>
+
+</html>

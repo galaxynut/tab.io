@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div><img id="imgid" /><span id="mobileid"></span></div>
+    <script type="text/javascript">
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+            return decodeURIComponent(r[2]);
+        }
+        return null;
+    }
+    console.log(getUrlParam('imgurl'));
+    console.log(getUrlParam('mobile'));
+    var imgDom = document.getElementById('imgid');
+    imgDom.src = getUrlParam('imgurl');
+    imgDom.alt = 'OMG 图片跪了';
+    document.getElementById('mobileid').innerHTML = getUrlParam('mobile');
+    </script>
+</body>
+
+</html>
